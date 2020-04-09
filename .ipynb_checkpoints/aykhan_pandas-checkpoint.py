@@ -12,10 +12,10 @@ def correlation_heat_map(df, figsize = (10,10)):
 
 
 
-def desc(df, name):
+def desc(df):
     import seaborn as sns
     cm = sns.light_palette("gray", as_cmap=True)
-    display(HTML('<h4><B><span style="padding-left: 30%";>' + f"{name} shape {df.shape}" + "</span></h4>"))    
+    display(HTML('<h4><B><span style="padding-left: 30%";>' + f"shape {df.shape}" + "</span></h4>"))    
     desc = pd.DataFrame(
             {
                 'dtypes' : df.dtypes,
