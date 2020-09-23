@@ -12,7 +12,7 @@ def correlation_heat_map(df, figsize = (10,10)):
 
 
 
-def desc(df):
+def desc(df print_sorted = False):
     import seaborn as sns
     cm = sns.light_palette("gray", as_cmap=True)
     display(HTML('<h4><B><span style="padding-left: 30%";>' + f"shape {df.shape}" + "</span></h4>"))    
@@ -26,5 +26,6 @@ def desc(df):
     style1 = desc.style.background_gradient(cmap=cm, subset=['nunique'])
     style2 = desc.style.set_properties(**{'font-weight': 'bold'}, subset = ['index'])
     style2.use(style1.export())
-    display(style2)
+    if print_sorted:
+    	display(style2)
     return desc
