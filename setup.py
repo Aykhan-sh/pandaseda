@@ -11,7 +11,7 @@ setuptools.setup(
     description="Set of functions for pandas datafraym EDA",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Aykhan-sh/Pandas-EDA",
+    url="https://github.com/Aykhan-sh/pandaseda",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
