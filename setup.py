@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="PandasEDA", # Replace with your own username
+    name="pandaseda", # Replace with your own username
     version="0.0.1",
     author="Aykhan-sh",
     author_email="a.turlasov@gmail.com",
