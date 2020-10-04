@@ -30,3 +30,11 @@ def desc(df, print_sorted = False):
     if print_sorted:
     	display(style2)
     return desc
+
+def get_pearson(df, target, thresh = 0.5):
+    correlation = df.corrwith(df[target]).sort_values()
+    correlation = correlation[(correlation<-thresh).values | (correlation>thresh).values]
+    correlation = correlation.loc[correlation.index != target]
+    correlation = correlation.reset_index().rename({'index':'variable', 0:'pearson score'}, axis = 1)
+    return correlation
+
