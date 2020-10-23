@@ -76,20 +76,6 @@ class Describe:
         elif mode == 'equal':
             return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
 
-def missing_data(df):
-    """
-    :param df: Pandas DataFrame
-    
-    :return: Dataframe with columns ['index', 'Total', 'Percent']
-        index - columns of dataframe
-        Total - total count of missing values
-        Percent - percent of missing values
-    """
-    total = df.isnull().sum().sort_values(ascending = False)
-    percent = (df.isnull().sum()/df.isnull().count()*100).sort_values(ascending = False)
-    result_df = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])  
-
-    return result_df.style.bar(subset=["Percent"], color='#FF0000')      
 
 def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)):
     """
@@ -100,17 +86,12 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
         show columns with absolute value of the score higher than threshold
     :param draw: bool. Default: True
         if True function will also draw barplot of correlation
-    :param method: string. Default: 'pearson'
-        'method' parameter of pandas.Dataframe.corr function
-        {‘pearson’, ‘kendall’, ‘spearman’} or callable
+    :param method: string. Default: "pearson"
+        "method" parameter of pandas.Dataframe.corr function
+        {"pearson", "kendall", "spearman"} or callable
     :param xlim: tuple of int. Default: (-1, 1)
         Limits for x axis.
 
-    :return: Dataframe with columns ['varible', 'score'] or None
-        variable - column of dataframe
-        score - correlation score
-        returns None if there is no variable with such correlation condition.
-        Try to change threshold parameter
     """
     cr = df.corrwith(df[target], method=method).sort_values()
     cr = cr[(cr < -thresh).values | (cr > thresh).values]
@@ -124,24 +105,6 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
         sns.barplot(cr['score'], cr.variable)
         plt.xlim(*xlim)
         plt.title(f'{method} correlation with {target}', fontdict={'size': 30})
-        plt.yticks(size=17);
-        plt.xticks(size=17);
-        plt.ylabel('');
-        plt.xlabel('');
-    return cr
-
-def getTopCororrelation(df, target, draw=True, method='pearson', topc=5, sorttype='positive', xlim=(-1, 1)):
-    cr = df.drop(target, axis=1).corrwith(df[target], method=method).sort_values()
-    if sorttype=='positive':
-        cr = cr.tail(topc).reset_index().rename({'index': 'variable', 0: 'score'}, axis=1)
-    else:
-        cr = cr.head(topc).reset_index().rename({'index': 'variable', 0: 'score'}, axis=1)
-    if draw:
-        length = len(cr)
-        plt.figure(figsize=(19, length * 2))
-        sns.barplot(cr['score'], cr.variable)
-        plt.xlim(*xlim)
-        plt.title(f'Top {topc} {method} {sorttype} correlation with {target}', fontdict={'size': 30})
         plt.yticks(size=17);
         plt.xticks(size=17);
         plt.ylabel('');
