@@ -76,6 +76,20 @@ class Describe:
         elif mode == 'equal':
             return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
 
+def missing_data(df):
+    """
+    :param df: Pandas DataFrame
+    
+    :return: Dataframe with columns ['index', 'Total', 'Percent']
+        index - columns of dataframe
+        Total - total count of missing values
+        Percent - percent of missing values
+    """
+    total = df.isnull().sum().sort_values(ascending = False)
+    percent = (df.isnull().sum()/df.isnull().count()*100).sort_values(ascending = False)
+    result_df = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])  
+
+    return result_df.style.bar(subset=["Percent"], color='#FF0000')      
 
 def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)):
     """
@@ -110,6 +124,24 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
         sns.barplot(cr['score'], cr.variable)
         plt.xlim(*xlim)
         plt.title(f'{method} correlation with {target}', fontdict={'size': 30})
+        plt.yticks(size=17);
+        plt.xticks(size=17);
+        plt.ylabel('');
+        plt.xlabel('');
+    return cr
+
+def getTopCororrelation(df, target, draw=True, method='pearson', topc=5, sorttype='positive', xlim=(-1, 1)):
+    cr = df.drop(target, axis=1).corrwith(df[target], method=method).sort_values()
+    if sorttype=='positive':
+        cr = cr.tail(topc).reset_index().rename({'index': 'variable', 0: 'score'}, axis=1)
+    else:
+        cr = cr.head(topc).reset_index().rename({'index': 'variable', 0: 'score'}, axis=1)
+    if draw:
+        length = len(cr)
+        plt.figure(figsize=(19, length * 2))
+        sns.barplot(cr['score'], cr.variable)
+        plt.xlim(*xlim)
+        plt.title(f'Top {topc} {method} {sorttype} correlation with {target}', fontdict={'size': 30})
         plt.yticks(size=17);
         plt.xticks(size=17);
         plt.ylabel('');
