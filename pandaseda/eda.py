@@ -150,7 +150,7 @@ def distplots(df, columns, subplots_params=None):
     display(HTML('<h1><B><center>' f"Distribution plots" "</span></h1>"))
     ax = axis.ravel()
     for idx, i in enumerate(columns):
-        sns.distplot(x=i, data=df[[i]].dropna(), ax=ax[idx])
+        sns.histplot(x=i, data=df[[i]].dropna(), ax=ax[idx])
         ax[idx].tick_params(labelsize=14)
         ax[idx].set_xlabel('')
         ax[idx].set_title(i, fontsize=23)
