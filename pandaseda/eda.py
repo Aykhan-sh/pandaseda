@@ -47,11 +47,11 @@ class Describe:
             plt.title(col, fontdict={'size': 18})
             if hue is not None:
                 if col == hue:
-                    sns.countplot(self.df[col])
+                    sns.countplot(x=col, data=self.df)
                 else:
-                    sns.countplot(self.df[col], hue=self.df[hue])
+                    sns.countplot(x=col, data=self.df, hue=hue)
             else:
-                sns.countplot(self.df[col])
+                sns.countplot(x=col, data=self.df)
             plt.xlabel('')
             plt.ylabel("count", fontsize=fontsize)
             plt.xticks(fontsize=fontsize)
@@ -150,7 +150,7 @@ def distplots(df, columns, subplots_params=None):
     display(HTML('<h1><B><center>' f"Distribution plots" "</span></h1>"))
     ax = axis.ravel()
     for idx, i in enumerate(columns):
-        sns.distplot(df[i].dropna(), ax=ax[idx])
+        sns.distplot(x=i, data=df[[i]].dropna(), ax=ax[idx])
         ax[idx].tick_params(labelsize=14)
         ax[idx].set_xlabel('')
         ax[idx].set_title(i, fontsize=23)

@@ -14,7 +14,7 @@ pip install --upgrade git+https://github.com/Aykhan-sh/pandaseda@master
 ## Usage
 ```python
 import pandas as pd
-from pandaseda.Functional import Describe
+from pandaseda import Describe
 titanic = pd.read_csv('train.csv')
 desc = Describe(titanic)
 desc.display()
