@@ -32,8 +32,6 @@ jobs:
         black .
     - name: Run flake8
       run: flake8
-    - name: Run Pylint
-      run: pylint pandaseda
     - name: Run Mypy
       run: mypy pandaseda
     - name: tests
