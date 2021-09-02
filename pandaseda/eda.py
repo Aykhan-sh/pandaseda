@@ -21,11 +21,13 @@ class Describe:
         return desc
 
     def display(self, sort='nunique'):
+        
         """:param sort: string
             Column to sort by
         :return: None
             Shows dataframe with information of every column
         """
+        
         cm = sns.light_palette("gray", as_cmap=True)
         df = self.info.sort_values(by=sort)
         display(HTML('<h4><B><span style="padding-left: 30%";>' + f"shape {self.df.shape}" + "</span></h4>"))
@@ -57,6 +59,7 @@ class Describe:
             plt.yticks(fontsize=fontsize)
 
     def get_columns(self, number_of_nuniques=2, mode='equal'):
+        
         """:param number_of_nuniques:  one integer - number of unique values in column
         :param mode: string
             "less" - returns columns with number of unique values that is less than number_of_nuniques
@@ -64,6 +67,7 @@ class Describe:
             "more" - returns columns with number of unique values that is more than number_of_nuniques
         :return: returns array of columns with specific number of unique values
         """
+        
         if mode not in ['less', 'more', 'equal']:
             raise Exception('mode must be one of: "less", "equal" or "more"')
         if mode == 'less':
@@ -75,6 +79,7 @@ class Describe:
 
 
 def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
+    
     """:param df: Pandas DataFrame
     :param figsize: tuple
         size of the figure (x, y)
@@ -83,6 +88,7 @@ def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
         {"pearson", "kendall", "spearman"} or callable
     :return:
     """
+    
     ax = sns.heatmap(df.corr(method=method), vmin=-1, vmax=1, annot=True)
     labels = [t.get_text() for t in ax.get_xticklabels()]
     ax.set_xticklabels(labels, rotation=30, horizontalalignment="right")
@@ -90,6 +96,7 @@ def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
 
 
 def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)):
+    
     """:param df: Pandas DataFrame
     :param target: string
         name of column to count correlation
@@ -103,6 +110,7 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
     :param xlim: tuple of int. Default: (-1, 1)
         Limits for x axis.
     """
+    
     cr = df.corrwith(df[target], method=method).sort_values()
     cr = cr[(cr < -thresh).values | (cr > thresh).values]
     cr = cr.loc[cr.index != target]
@@ -123,6 +131,7 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
 
 
 def distplots(df, columns, hue=None, subplots_params=None):
+    
     """:param df: Pandas DataFrame
     :param columns: list or string
         columns or column to visualize
@@ -132,6 +141,7 @@ def distplots(df, columns, hue=None, subplots_params=None):
     :return: None
         Draws sns.distplot
     """
+    
     if isinstance(hue, str) or hue is None:
         hue = [hue]*len(columns)
     s_params = {
