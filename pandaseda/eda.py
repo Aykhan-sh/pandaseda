@@ -6,16 +6,6 @@ from math import ceil
 
 
 def distplots(df, columns, hue=None, subplots_params=None):
-    """
-    :param df: Pandas DataFrame
-    :param columns: list or string
-        columns or column to visualize
-    :param hue: list of string or string
-    :param subplots_params: dictionary. Default: None
-        parameters of plt.subplots()
-    :return: None
-        Draws sns.distplot
-    """
     if isinstance(hue, str) or hue is None:
         hue = [hue]*len(columns)
     s_params = {
