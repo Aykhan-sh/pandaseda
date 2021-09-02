@@ -21,8 +21,7 @@ class Describe:
         return desc
 
     def display(self, sort='nunique'):
-        """
-        :param sort: string
+        """:param sort: string
             Column to sort by
         :return: None
             Shows dataframe with information of every column
@@ -58,8 +57,7 @@ class Describe:
             plt.yticks(fontsize=fontsize)
 
     def get_columns(self, number_of_nuniques=2, mode='equal'):
-        """
-        :param number_of_nuniques:  one integer - number of unique values in column
+        """:param number_of_nuniques:  one integer - number of unique values in column
         :param mode: string
             "less" - returns columns with number of unique values that is less than number_of_nuniques
             "equal" - returns columns with number of unique values that is equal to number_of_nuniques
@@ -77,8 +75,7 @@ class Describe:
 
 
 def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
-    """
-    :param df: Pandas DataFrame
+    """:param df: Pandas DataFrame
     :param figsize: tuple
         size of the figure (x, y)
     :param method:  string. Default: "pearson"
@@ -93,8 +90,7 @@ def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
 
 
 def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)):
-    """
-    :param df: Pandas DataFrame
+    """:param df: Pandas DataFrame
     :param target: string
         name of column to count correlation
     :param thresh: float [0.0, 1.0]. Default: 0.5
@@ -106,7 +102,6 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
         {"pearson", "kendall", "spearman"} or callable
     :param xlim: tuple of int. Default: (-1, 1)
         Limits for x axis.
-
     """
     cr = df.corrwith(df[target], method=method).sort_values()
     cr = cr[(cr < -thresh).values | (cr > thresh).values]
@@ -128,8 +123,7 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
 
 
 def distplots(df, columns, hue=None, subplots_params=None):
-    """
-    :param df: Pandas DataFrame
+    """:param df: Pandas DataFrame
     :param columns: list or string
         columns or column to visualize
     :param hue: list of string or string
