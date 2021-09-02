@@ -21,7 +21,7 @@ class Describe:
         return desc
 
     def display(self, sort='nunique'):
-        """Display function
+        """Display function.
         
         :param sort: string
             Column to sort by
@@ -60,7 +60,7 @@ class Describe:
             plt.yticks(fontsize=fontsize)
 
     def get_columns(self, number_of_nuniques=2, mode='equal'):
-        """Get Columns
+        """Get Columns.
         
         :param number_of_nuniques:  one integer - number of unique values in column
         :param mode: string
@@ -81,7 +81,7 @@ class Describe:
 
 
 def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
-    """Get correlation heatmap
+    """Get correlation heatmap.
     
     :param df: Pandas DataFrame
     :param figsize: tuple
@@ -99,7 +99,7 @@ def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
 
 
 def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)):
-    """Get correlation
+    """Get correlation.
     
     :param df: Pandas DataFrame
     :param target: string
@@ -135,7 +135,7 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
 
 
 def distplots(df, columns, hue=None, subplots_params=None):
-    """Plot distplot
+    """Plot distplot.
     
     :param df: Pandas DataFrame
     :param columns: list or string
