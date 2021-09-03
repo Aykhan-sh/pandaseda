@@ -134,7 +134,7 @@ def correlation(df: pd.DataFrame, target: str, thresh: float=0.5, draw: bool=Tru
     return cr
 
 
-def distplots(df: pd.DataFrame, columns: List, hue: AnyStr=None, subplots_params: Dict[Any, Any]=None) -> None:
+def distplots(df: pd.DataFrame, columns: Union[str, List[int]], hue: Union[str, List[int], None]=None, subplots_params: Dict[Any, Any]=None) -> None:
     """Plot distplot.
     
     :param df: Pandas DataFrame
