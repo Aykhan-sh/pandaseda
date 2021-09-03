@@ -20,7 +20,7 @@ class Describe:
         ).reset_index(level=0).merge(df.describe().T.reset_index(level=0), how='left').sort_values('nunique')
         return desc
 
-    def display(self, sort='nunique': str) -> None:
+    def display(self, sort: str='nunique') -> None:
         """Display function.
         
         :param sort: string
@@ -37,7 +37,7 @@ class Describe:
         style2.use(style1.export())
         display(style2)
 
-    def countplot(self, nuniques: int, cols=2: int, hue=None: List, figsize=None: Tuple, fontsize=14: int) -> None:  # TODO define out of the class
+    def countplot(self, nuniques: int, cols: int=2, hue: List=None, figsize: Tuple=None, fontsize: int=14) -> None:  # TODO define out of the class
         display(HTML('<h1><B><center>' f"Countplots of data with less than {nuniques} unique values" "</span></h1>"))
         columns_for_counts = self.get_columns(number_of_nuniques=nuniques, mode='less')
         rows = ceil((len(columns_for_counts)) / cols)
@@ -59,7 +59,7 @@ class Describe:
             plt.xticks(fontsize=fontsize)
             plt.yticks(fontsize=fontsize)
 
-    def get_columns(self, number_of_nuniques=2: int, mode='equal': str) -> List:
+    def get_columns(self, number_of_nuniques: int=2, mode: str='equal') -> List:
         """Get Columns.
         
         :param number_of_nuniques:  one integer - number of unique values in column
@@ -80,7 +80,7 @@ class Describe:
             return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
 
 
-def correlation_heat_map(df: pd.DataFrame, figsize=(10, 10): Tuple, method='spearman': str) -> None:
+def correlation_heat_map(df: pd.DataFrame, figsize: Tuple=(10, 10), method: str='spearman') -> None:
     """Get correlation heatmap.
     
     :param df: Pandas DataFrame
@@ -92,13 +92,13 @@ def correlation_heat_map(df: pd.DataFrame, figsize=(10, 10): Tuple, method='spea
     :return:
     
     """
-    ax = sns.heatmap(df.corr(method=method): pd.DataFrame, vmin=-1: int, vmax=1: int, annot=True: bool)
+    ax = sns.heatmap(df.corr(method=method), vmin=-1, vmax=1, annot=True)
     labels = [t.get_text() for t in ax.get_xticklabels()]
     ax.set_xticklabels(labels, rotation=30, horizontalalignment="right")
     sns.set(rc={'figure.figsize': figsize}, font_scale=1.4)
 
 
-def correlation(df: pd.DataFrame, target: str, thresh=0.5: float, draw=True: bool, method='pearson': str, xlim=(-1, 1): Tuple) -> List:
+def correlation(df: pd.DataFrame, target: str, thresh: float=0.5, draw: bool=True, method: str='pearson', xlim: Tuple=(-1, 1)) -> List:
     """Get correlation.
     
     :param df: Pandas DataFrame
@@ -134,7 +134,7 @@ def correlation(df: pd.DataFrame, target: str, thresh=0.5: float, draw=True: boo
     return cr
 
 
-def distplots(df: pd.DataFrame, columns: List, hue=None: List, subplots_params=None: dict) -> None:
+def distplots(df: pd.DataFrame, columns: List, hue: List=None, subplots_params: dict=None) -> None:
     """Plot distplot.
     
     :param df: Pandas DataFrame
