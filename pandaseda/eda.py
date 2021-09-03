@@ -6,11 +6,11 @@ from math import ceil
 
 
 class Describe:
-    def __init__(self, df):
+    def __init__(self, df) -> None:
         self.df = df
         self.info = self.__desc(df)
 
-    def __desc(self, df):
+    def __desc(self, df) -> DataFrame:
         desc = pd.DataFrame(
             {
                 'dtypes': df.dtypes,
