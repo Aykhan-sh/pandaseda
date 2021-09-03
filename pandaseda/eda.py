@@ -60,7 +60,7 @@ class Describe:
             plt.yticks(fontsize=fontsize)
         return None
 
-    def get_columns(self, number_of_nuniques: int=2, mode: str='equal') -> Union[List,None]:
+    def get_columns(self, number_of_nuniques: int=2, mode: str='equal') -> List:
         """Get Columns.
         
         :param number_of_nuniques:  one integer - number of unique values in column
@@ -79,7 +79,7 @@ class Describe:
             return self.info.loc[self.info['nunique'] > number_of_nuniques]['index'].values
         elif mode == 'equal':
             return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
-        return None
+        return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
 
 
 def correlation_heat_map(df: pd.DataFrame, figsize: Tuple=(10, 10), method: str='spearman') -> None:
