@@ -3,14 +3,14 @@ import pandas as pd
 import seaborn as sns
 from IPython.core.display import HTML, display
 from math import ceil
-
+from typing import List
 
 class Describe:
     def __init__(self, df) -> None:
         self.df = df
         self.info = self.__desc(df)
 
-    def __desc(self, df) -> DataFrame:
+    def __desc(self, df) -> pd.DataFrame:
         desc = pd.DataFrame(
             {
                 'dtypes': df.dtypes,
@@ -20,7 +20,7 @@ class Describe:
         ).reset_index(level=0).merge(df.describe().T.reset_index(level=0), how='left').sort_values('nunique')
         return desc
 
-    def display(self, sort='nunique'):
+    def display(self, sort='nunique') -> None:
         """Display function.
         
         :param sort: string
@@ -37,7 +37,7 @@ class Describe:
         style2.use(style1.export())
         display(style2)
 
-    def countplot(self, nuniques, cols=2, hue=None, figsize=None, fontsize=14):  # TODO define out of the class
+    def countplot(self, nuniques, cols=2, hue=None, figsize=None, fontsize=14) -> None:  # TODO define out of the class
         display(HTML('<h1><B><center>' f"Countplots of data with less than {nuniques} unique values" "</span></h1>"))
         columns_for_counts = self.get_columns(number_of_nuniques=nuniques, mode='less')
         rows = ceil((len(columns_for_counts)) / cols)
@@ -59,7 +59,7 @@ class Describe:
             plt.xticks(fontsize=fontsize)
             plt.yticks(fontsize=fontsize)
 
-    def get_columns(self, number_of_nuniques=2, mode='equal'):
+    def get_columns(self, number_of_nuniques=2, mode='equal') -> List:
         """Get Columns.
         
         :param number_of_nuniques:  one integer - number of unique values in column
@@ -80,7 +80,7 @@ class Describe:
             return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
 
 
-def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
+def correlation_heat_map(df, figsize=(10, 10), method='spearman') -> None:
     """Get correlation heatmap.
     
     :param df: Pandas DataFrame
@@ -98,7 +98,7 @@ def correlation_heat_map(df, figsize=(10, 10), method='spearman'):
     sns.set(rc={'figure.figsize': figsize}, font_scale=1.4)
 
 
-def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)):
+def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1)) -> List:
     """Get correlation.
     
     :param df: Pandas DataFrame
@@ -134,7 +134,7 @@ def correlation(df, target, thresh=0.5, draw=True, method='pearson', xlim=(-1, 1
     return cr
 
 
-def distplots(df, columns, hue=None, subplots_params=None):
+def distplots(df, columns, hue=None, subplots_params=None) -> None:
     """Plot distplot.
     
     :param df: Pandas DataFrame
