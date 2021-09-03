@@ -34,7 +34,3 @@ jobs:
       run: flake8
     - name: Run Mypy
       run: mypy pandaseda
-    - name: tests
-      run: |
-       pip install .[tests]
-       pytest
