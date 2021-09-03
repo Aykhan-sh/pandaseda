@@ -79,6 +79,7 @@ class Describe:
             return self.info.loc[self.info['nunique'] > number_of_nuniques]['index'].values
         elif mode == 'equal':
             return self.info.loc[self.info['nunique'] == number_of_nuniques]['index'].values
+        return None
 
 
 def correlation_heat_map(df: pd.DataFrame, figsize: Tuple=(10, 10), method: str='spearman') -> None:
