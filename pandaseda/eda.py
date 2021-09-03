@@ -37,7 +37,7 @@ class Describe:
         style2.use(style1.export())
         display(style2)
 
-    def countplot(self, nuniques: int, cols: int=2, hue: List[int]=None, figsize: Tuple[int, int]=None, fontsize: int=14) -> None:  # TODO define out of the class
+    def countplot(self, nuniques: int, cols: int=2, hue: str=None, figsize: Tuple[int, int]=(10, 10), fontsize: int=14) -> None:  # TODO define out of the class
         display(HTML('<h1><B><center>' f"Countplots of data with less than {nuniques} unique values" "</span></h1>"))
         columns_for_counts = self.get_columns(number_of_nuniques=nuniques, mode='less')
         rows = ceil((len(columns_for_counts)) / cols)
