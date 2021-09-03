@@ -58,6 +58,7 @@ class Describe:
             plt.ylabel("count", fontsize=fontsize)
             plt.xticks(fontsize=fontsize)
             plt.yticks(fontsize=fontsize)
+        return None
 
     def get_columns(self, number_of_nuniques: int=2, mode: str='equal') -> List:
         """Get Columns.
@@ -156,7 +157,7 @@ def distplots(df: pd.DataFrame, columns: Union[str, List[int]], hue: Union[str, 
     if subplots_params is not None:
         s_params.update(subplots_params)
         if 'figsize' not in subplots_params:
-            s_params['figsize'] = (int(s_params['nrows']) * 10, int(s_params['ncols']) * 8)
+            s_params['figsize'] = (s_params['nrows'] * 10, s_params['ncols'] * 8)
 
     fig, axis = plt.subplots(**s_params)
     display(HTML('<h1><B><center>' f"Distribution plots" "</span></h1>"))
