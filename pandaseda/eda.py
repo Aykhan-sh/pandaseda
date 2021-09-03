@@ -120,7 +120,7 @@ def correlation(df: pd.DataFrame, target: str, thresh: float=0.5, draw: bool=Tru
     cr = cr[(cr < -thresh).values | (cr > thresh).values]
     cr = cr.loc[cr.index != target]
     if len(cr) == 0:
-        return
+        return cr
     cr = cr.reset_index().rename({'index': 'variable', 0: 'score'}, axis=1)
     if draw:
         length = len(cr)
