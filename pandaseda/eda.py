@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 from IPython.core.display import HTML, display
 from math import ceil
-from typing import List, Tuple
+from typing import List, Tuple, Any
 
 class Describe:
     def __init__(self, df: pd.DataFrame) -> None:
@@ -37,7 +37,7 @@ class Describe:
         style2.use(style1.export())
         display(style2)
 
-    def countplot(self, nuniques: int, cols: int=2, hue: List=None, figsize: Tuple=None, fontsize: int=14) -> None:  # TODO define out of the class
+    def countplot(self, nuniques: int, cols: int=2, hue: List[int]=None, figsize: Tuple[int, int]=None, fontsize: int=14) -> None:  # TODO define out of the class
         display(HTML('<h1><B><center>' f"Countplots of data with less than {nuniques} unique values" "</span></h1>"))
         columns_for_counts = self.get_columns(number_of_nuniques=nuniques, mode='less')
         rows = ceil((len(columns_for_counts)) / cols)
@@ -134,7 +134,7 @@ def correlation(df: pd.DataFrame, target: str, thresh: float=0.5, draw: bool=Tru
     return cr
 
 
-def distplots(df: pd.DataFrame, columns: List, hue: List=None, subplots_params: dict=None) -> None:
+def distplots(df: pd.DataFrame, columns: List, hue: List[int]=None, subplots_params: Dict[str]=None) -> None:
     """Plot distplot.
     
     :param df: Pandas DataFrame
