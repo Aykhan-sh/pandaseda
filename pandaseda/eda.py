@@ -60,7 +60,7 @@ class Describe:
             plt.yticks(fontsize=fontsize)
         return None
 
-    def get_columns(self, number_of_nuniques: int=2, mode: str='equal') -> List:
+    def get_columns(self, number_of_nuniques: int=2, mode: str='equal') -> Union[List,None]:
         """Get Columns.
         
         :param number_of_nuniques:  one integer - number of unique values in column
@@ -136,7 +136,7 @@ def correlation(df: pd.DataFrame, target: str, thresh: float=0.5, draw: bool=Tru
     return cr
 
 
-def distplots(df: pd.DataFrame, columns: Union[str, List[int]], hue: Union[str, List[int], None]=None, subplots_params: Union[Dict[Any, Any], None]=None) -> None:
+def distplots(df: pd.DataFrame, columns: Union[str, List[int]], hue: Union[int, str, List[int], None]=None, subplots_params: Union[Dict[Any, Any], None]=None) -> None:
     """Plot distplot.
     
     :param df: Pandas DataFrame
