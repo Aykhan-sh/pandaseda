@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 from IPython.core.display import HTML, display
 from math import ceil
-from typing import List, Tuple, Any
+from typing import List, Tuple, Dict
 
 class Describe:
     def __init__(self, df: pd.DataFrame) -> None:
