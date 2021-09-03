@@ -152,13 +152,11 @@ def distplots(df: pd.DataFrame, columns: Union[str, List[int]], hue: Union[str, 
     if isinstance(hue, str) or hue is None:
         hue = [hue]*len(columns)
     s_params = {
-        'nrows': len(columns),
-        'ncols': 1,
         'figsize': (15, len(columns) * 8)}
     if subplots_params is not None:
         s_params.update(subplots_params)
         if 'figsize' not in subplots_params:
-            s_params['figsize'] = (s_params['nrows'] * 10, s_params['ncols'] * 8)
+            s_params['figsize'] = (len(columns) * 10, 1 * 8)
 
     fig, axis = plt.subplots(**s_params)
     display(HTML('<h1><B><center>' f"Distribution plots" "</span></h1>"))
