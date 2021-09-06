@@ -1,9 +1,10 @@
+from math import ceil
+from typing import Any, Dict, List, Tuple, Union
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from IPython.core.display import HTML, display
-from math import ceil
-from typing import List, Tuple, Dict, Any, Union
 
 
 class Describe:
