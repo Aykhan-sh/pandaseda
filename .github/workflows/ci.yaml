@@ -34,3 +34,7 @@ jobs:
       run: flake8
     - name: Run Mypy
       run: mypy pandaseda
+    - name: Run isort
+      uses: olance/isort-action@v1.0.0
+      with:
+        args: .
